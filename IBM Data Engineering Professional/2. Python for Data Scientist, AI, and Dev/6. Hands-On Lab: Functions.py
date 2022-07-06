@@ -155,6 +155,7 @@ print("My favourite band is:", myFavouriteBand)
 # AC/DC's rating is: 10.0       #output
 # Deep Purple's rating is: 0.0
 # My favourite band is: AC/DC
+
 --------------------------------------------------------------------------------------------------------------------------
 # Deleting the variable "myFavouriteBand" from the previous example to demonstrate an example of a local variable 
 
@@ -176,3 +177,56 @@ print("My favourite band is", myFavouriteBand)
 # AC/DC's rating is:  10.0        #output
 # Deep Purple's rating is:  0.0
 # name 'myFavouriteBand' is not defined
+
+--------------------------------------------------------------------------------------------------------------------------
+#Collections and Functions
+
+def printAll(*args): # All the arguments are 'packed' into args which can be treated like a tuple
+    print("No of arguments:", len(args)) 
+    for argument in args:
+        print(argument)
+        
+#printAll with 3 arguments
+printAll('Horsefeather','Adonis','Bone')
+#printAll with 4 arguments
+printAll('Sidecar','Long Island','Mudslide','Carriage')
+
+No of arguments: 3 #output
+Horsefeather
+Adonis
+Bone
+No of arguments: 4
+Sidecar
+Long Island
+Mudslide
+Carriage
+
+--------------------------------------------------------------------------------------------------------------------------
+#Dictionary Arguments, The arguments can also be packed into a dictionary as shown:
+
+def printDictionary(**args):
+    for key in args:
+        print(key + " : " + args[key])
+
+printDictionary(Country='Canada',Province='Ontario',City='Toronto')
+
+Country : Canada            #output
+Province : Ontario
+City : Toronto
+
+--------------------------------------------------------------------------------------------------------------------------
+#They can accept (and return) data types, objects and even other functions as arguements. Consider the example below:
+
+def addItems(list):
+    list.append("Three")
+    list.append("Four")
+
+myList = ["One","Two"]
+
+addItems(myList)
+
+
+['One', 'Two', 'Three', 'Four'] #output
+
+
+myList
