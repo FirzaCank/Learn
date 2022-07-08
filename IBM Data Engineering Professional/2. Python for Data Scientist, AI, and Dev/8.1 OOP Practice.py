@@ -68,3 +68,20 @@ Putra makan nasi
 Putri makan nasi
 
 ---------------------------------------------------------------------------------------------------------------
+#Inheritence(keturunan/warisan)- dengan class Manusia di atas
+
+class ManusiaMilenial(Manusia):
+  email = None
+
+  def set_email(self, email):
+    self.email = email
+
+  def info(self):
+    print('nama = {}, email = {}'.format(self.nama, self.email))
+
+programmer = ManusiaMilenial('Eka')
+programmer.set_email('eka@gmail.com')
+programmer.info()
+
+#output
+nama = Eka, email = eka@gmail.com
