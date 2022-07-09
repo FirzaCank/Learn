@@ -85,3 +85,64 @@ programmer.info()
 
 #output
 nama = Eka, email = eka@gmail.com
+
+---------------------------------------------------------------------------------------------------------------
+#Encapsulation - Memberikan akses private tertentu
+
+class ManusiaMilenial(Manusia):
+  email = None
+  
+  #__ artinya access private
+  __password = None
+
+  def set_email(self, email):
+    self.email = email
+
+  def set_pass(self,password):
+    self.__password = password
+
+  def __samarkan_password(self):
+    return self.__password.replace(self.__password[:3], '*'*3)
+
+  def info(self):
+    print('nama = {}, email = {}, pass = {}'.format(self.nama, self.email, self.__samarkan_password()))
+
+programmer = ManusiaMilenial('Eka')
+programmer.set_email('eka@gmail.com')
+programmer.set_pass('patrickstar')
+
+programmer.info()
+
+#output
+nama = Eka, email = eka@gmail.com, pass = ***rickstar
+
+---------------------------------------------------------------------------------------------------------------
+#polymorphisme - banyak bentuk dengan attribute berbeda
+
+class Programmer(ManusiaMilenial):
+  def info(self):
+    print('nama : {}, email : {}'.format(self.nama, self.email))
+
+class Influencer(ManusiaMilenial):
+   def info(self):
+    print('nama = {} / email = {}'.format(self.nama, self.email))
+
+orang = ManusiaMilenial('Aldi')
+orang.set_email('aldira@gmail.com')
+orang.set_pass('spongebob')
+orang.info()
+
+programmer = Programmer('Eka')
+programmer.set_email('eka@gmail.com')
+programmer.set_pass('patrickstar')
+programmer.info()
+
+influencer = Influencer('Putra')
+influencer.set_email('putra@gmail.com')
+influencer.set_pass('patrickstar12')
+influencer.info()
+
+#output
+nama = Aldi, email = aldira@gmail.com, pass = ***ngebob
+nama : Eka, email : eka@gmail.com
+nama = Putra / email = putra@gmail.com
