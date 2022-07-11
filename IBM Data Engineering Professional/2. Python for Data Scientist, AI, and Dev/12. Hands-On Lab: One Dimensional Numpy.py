@@ -1,3 +1,11 @@
+#TABLE OF CONTENT :
+1. Check type value
+2. Assign value
+3. Slicing
+4. Assign value with list
+5. Other attributes (size, dim, shape)
+
+
 #NumPy is a Python library used for working with arrays, linear algebra, fourier transform, and matrices.A numpy array is similar to a list.
 #NumPy stands for Numerical Python and it is an open source project
 #The array object in NumPy is called ndarray, it provides a lot of supporting functions that make working with ndarray very easy.
@@ -19,7 +27,7 @@ a[3]: 3
 a[4]: 4
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
-#Numpy array same type
+#NUMPY ARRAY SAME TYPE
 
 import numpy as np
 
@@ -63,7 +71,7 @@ a.dtype
 dtype('int32')
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
-#Assign Value
+#ASSIGN VALUE
 
 # Create numpy array
 c = np.array([20, 1, 2, 3, 4])
@@ -77,7 +85,7 @@ c
 array([100,   1,   2,   3,   0])
 
 --------------------------------------------------------------------------------------------------------------------------------------------------
-#Slicing
+#SLICING
 
 # Slicing the numpy array
 d = c[1:4]
@@ -138,3 +146,57 @@ print(arr[1::2])
 
 #output
 [2 4 6 8]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+#ASSIGN VALUE WITH LIST
+
+c
+#output
+array([100,   1,   2, 300, 400])
+
+# Create the index list
+select = [0, 2, 3, 4] ------> ini adalah index yang akan dipilih di array c
+# Use List to select elements
+d = c[select]
+d
+
+#output
+array([100,   2, 300, 400])
+
+
+
+# Assign the specified elements to new value
+c[select] = 100000
+c
+
+#output
+array([100000,      1, 100000, 100000, 100000])
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+#OTHER ATTRIBUTES
+
+a = np.array([0, 1, 2, 3, 4])
+
+# Get the size of numpy array
+a.size
+
+#output
+5
+
+
+
+#The attribute ndim represents the number of array dimensions, or the rank of the array. In this case, one:
+# Get the number of dimensions of numpy array
+a.ndim
+
+#output
+1
+
+
+
+#The attribute shape is a tuple of integers indicating the size of the array in each dimension:
+# Get the shape/size of numpy array
+a.shape
+
+#output
+(5,)
