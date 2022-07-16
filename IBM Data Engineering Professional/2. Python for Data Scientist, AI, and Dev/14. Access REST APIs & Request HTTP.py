@@ -91,8 +91,110 @@ path
 
 #We save the file, in order to access the body of the response we use the attribute content then save it using the open function and write method:
 with open(path,'wb') as f:
-    f.write(r.content)
+ f.write(r.content)
     
 Image.open(path)  #view the image
 #output
 sebuah gambar
+
+------------------------------------------------------------------------------------------------------------------------
+#QUESTION 1
+#In the previous section, we used the wget function to retrieve content from the web server as shown below. Write the python code to perform the same task.
+#The code should be the same as the one used to download the image, but the file name should be 'Example1.txt'.
+
+url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%205/data/Example1.txt'
+path = os.path.join(os.getcwd(), 'example1.txt')
+r = requests.get(url)
+with open(path,'wb') as f:
+ f.write(r.content)
+ 
+------------------------------------------------------------------------------------------------------------------------
+#Get Request with URL Parameters
+
+url_get='http://httpbin.org/get'
+payload={"name":"Joseph","ID":"123"}
+r = requests.get(url_get,params=payload)
+r.url
+#output
+'http://httpbin.org/get?name=Joseph&ID=123'
+
+print("request body:", r.request.body)
+print(r.status_code)
+#output
+request body: None
+200
+
+
+
+#View the response text
+print(r.text)
+#output
+{
+  "args": {
+    "ID": "123", 
+    "name": "Joseph"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate, br", 
+    "Host": "httpbin.org", 
+    "User-Agent": "python-requests/2.28.1", 
+    "X-Amzn-Trace-Id": "Root=1-62d2d22f-76b8a3e5690055176b323273"
+  }, 
+  "origin": "150.239.85.244", 
+  "url": "http://httpbin.org/get?name=Joseph&ID=123"
+}
+
+
+
+#content type
+r.headers['Content-Type']
+#output
+'application/json'
+
+
+
+#As the content 'Content-Type' is in the JSON format we can use the method json(), it returns a Python dict:
+r.json()
+#output
+{'args': {'ID': '123', 'name': 'Joseph'},
+ 'headers': {'Accept': '*/*',
+  'Accept-Encoding': 'gzip, deflate, br',
+  'Host': 'httpbin.org',
+  'User-Agent': 'python-requests/2.28.1',
+  'X-Amzn-Trace-Id': 'Root=1-62d2d22f-76b8a3e5690055176b323273'},
+ 'origin': '150.239.85.244',
+ 'url': 'http://httpbin.org/get?name=Joseph&ID=123'}
+
+
+
+
+#The key args has the name and values:
+r.json()['args']
+#output
+{'ID': '123', 'name': 'Joseph'}
+
+------------------------------------------------------------------------------------------------------------------------
+#POST
+url_post='http://httpbin.org/post'
+r_post=requests.post(url_post,data=payload)
+print("POST request URL:",r_post.url )
+print("GET request URL:",r.url)
+#OUTPUT
+POST request URL: http://httpbin.org/post
+GET request URL: http://httpbin.org/get?name=Joseph&ID=123
+
+  
+
+#compare the POST and GET request body, we see only the POST request has a body:
+print("POST request body:",r_post.request.body)
+print("GET request body:",r.request.body)
+#output
+POST request body: name=Joseph&ID=123
+GET request body: None
+ 
+
+
+r_post.json()['form']
+#output
+{'ID': '123', 'name': 'Joseph'}
