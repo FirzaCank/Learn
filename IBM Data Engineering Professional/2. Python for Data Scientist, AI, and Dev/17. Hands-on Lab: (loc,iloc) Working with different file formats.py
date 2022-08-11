@@ -1,3 +1,4 @@
+#Extract
 #Reading data from CSV in Python
 import piplite
 await piplite.install(['seaborn', 'lxml', 'openpyxl'])
@@ -29,7 +30,7 @@ df
 4	NaN	Blankman	NaN	SomeTown	SD	298
 5	Joan "the bone", Anne	Jet	9th, at Terrace plc	Desert City	CO	123
 
------------------------------------------------------------------------------
+
 #Adding column name to the DataFrame
 
 df.columns =['First Name', 'Last Name', 'Location ', 'City','State','Area Code']
@@ -66,7 +67,35 @@ Area Code                  8075
 
 ## To select the 0th,1st and 2nd row of "First Name" column only
 df.loc[[0,1,2], "First Name" ]
+
+# To select the 0th,1st and 2nd row of "First Name" column only
+df.iloc[[0,1,2], 0]
+
 #output
 0             John
 1             Jack
 2    John "Da Man"
+
+---------------------------------------------------------------------
+#Transform Function in Pandas
+
+#import library
+import pandas as pd
+import numpy as np
+#creating a dataframe
+df=pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), columns=['a', 'b', 'c'])
+df
+
+	a	b	c
+0	1	2	3
+1	4	5	6
+2	7	8	9
+
+
+
+#Let’s say we want to add 10 to each element in a dataframe:
+#applying the transform function
+df = df.transform(func = lambda x : x + 10)
+
+#Now we will use DataFrame.transform() function to find the square root to each element of the dataframe.
+result = df.transform(func = ['sqrt'])
